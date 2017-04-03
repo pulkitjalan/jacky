@@ -20,7 +20,7 @@ class Client
 
         $params = config("jacky.servers.$server.request_options");
         if ($query) {
-            $params[($method == 'POST' || $method == 'PUT' || $method == 'PATCH') ? 'form_params' : 'query'] = $query;
+            $params[$method == 'POST' ? 'form_params' : (($method == 'PUT' || $method == 'PATCH') ? 'json' : 'query')] = $query;
         }
         $params['http_errors'] = false;
         
